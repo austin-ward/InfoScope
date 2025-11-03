@@ -32,10 +32,10 @@ It demonstrates how search engines actually *think* — using techniques like to
 ---
 
 ## Design Choices
-- 🖤 **Dark mode UI** with a clean, centered layout  
-- 🔍 Large search bar with *placeholder text* hints  
-- ⚙️ Toggles for retrieval model and filters  
-- 🗞️ “Recommended Articles” section under the search bar  
+- **Dark mode UI** with a clean, centered layout  
+- Large search bar with *placeholder text* hints  
+- Toggles for retrieval model and filters  
+- “Recommended Articles” section under the search bar  
 
 ---
 
@@ -44,19 +44,6 @@ It demonstrates how search engines actually *think* — using techniques like to
 - **CSS3** → styling (dark theme, responsive layout)  
 - **Vanilla JS** → indexing, ranking logic, and rendering results  
 - **JSON Dataset** → ~100 curated news article summaries  
-
----
-
-## Timeline Summary
-
-| Update | Focus | Time |
-|:--|:--|:--:|
-| **1 (Oct 6)** | Finalize project outline & dataset plan | 2 hrs |
-| **2 (Oct 20)** | Build dataset & basic layout | 4 hrs |
-| **3 (Nov 3)** | Implement JS logic, test TF-IDF & BM25 | 4 hrs |
-| **4 (Nov 17)** | Deploy site & prep VoiceThread | 3 hrs |
-| **Final (Dec 8)** | Submit site + presentation | 0.5 hrs |
-| **Total:** |  | **≈13.5 hrs** |
 
 ---
 
