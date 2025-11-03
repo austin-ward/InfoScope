@@ -46,13 +46,3 @@ It demonstrates how search engines actually *think* — using techniques like to
 - **Vanilla JS** → indexing, ranking logic, and rendering results  
 - **JSON Dataset** → ~100 curated news article summaries  
 
----
-
-## Getting Started
-```bash
-# Clone the repo
-git clone https://github.com/yourusername/InfoScope.git
-cd InfoScope
-
-# Open in browser
-open index.html   # or drag into your browser
