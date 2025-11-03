@@ -11,7 +11,7 @@
 
 ## Overview
 **InfoScope** is a lightweight search engine built for my **CIST433: Information Storage & Retrieval** final project.  
-It demonstrates how search engines actually *think* — using techniques like tokenization, stopword removal, and term weighting — all applied to a curated dataset of 100 news article summaries.
+It demonstrates how search engines actually *think* — using techniques like tokenization, stopword removal, and term weighting — all applied to a curated dataset of 400 news article summaries.
 
 > *The goal isn’t to compete with Google — it’s to show that I understand how Google works.*
 
