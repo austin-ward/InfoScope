@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InfoScope | News Search Engine</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>InfoScope</h1>
+    <p class="subtitle">A Mini News Search Engine built on IR principles</p>
+  </header>
+
+  <!-- Main Search Section -->
+  <main>
+    <section class="search-area">
+      <input 
+        type="text" 
+        id="query" 
+        placeholder="e.g., climate policy 'supply chain' OR emissions" 
+      />
+      
+      <div class="controls">
+        <div class="model-toggle">
+          <label><input type="radio" name="model" value="tfidf" checked /> TF-IDF</label>
+          <label><input type="radio" name="model" value="bm25" /> BM25-lite</label>
+        </div>
+
+        <div class="filter-toggle">
+          <label><input type="checkbox" id="fieldBoosts" checked /> Field Boosts</label>
+          <label><input type="checkbox" id="phrase" checked /> Phrases + AND/OR</label>
+        </div>
+
+        <div class="buttons">
+          <button id="searchBtn">Search</button>
+          <button id="resetBtn" class="ghost">Reset</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recommended Articles Section -->
+    <section id="recommended">
+      <h2>Recommended Articles</h2>
+      <ul>
+        <li><a href="article.html?id=1" target="_blank">New Federal Climate Policy Targets Industrial Emissions</a></li>
+        <li><a href="article.html?id=2" target="_blank">Semiconductor Supply Chains Diversify Beyond East Asia</a></li>
+        <li><a href="article.html?id=3" target="_blank">City Pilots Open Data Dashboard for Transit Reliability</a></li>
+      </ul>
+    </section>
+
+    <!-- Search Results Section -->
+    <section class="stats">
+      <div id="stats"></div>
+    </section>
+
+    <section id="results"></section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>InfoScope © 2025 | Built for CIST433 - Information Storage & Retrieval</p>
+    <p><small>Powered by TF-IDF • BM25-lite • JavaScript • JSON Dataset</small></p>
+  </footer>
+
+  <script src="js/search.js"></script>
+</body>
+</html>
