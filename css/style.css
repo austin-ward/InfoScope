@@ -1,0 +1,257 @@
+/* Dark Theme Color Palette Site-wide */
+
+:root {
+  --bg: #0D1B2A;
+  --nav-bg: #1B263B;
+  --card-bg: #1E2A40;
+  --surface: #2E3A59;
+  --input-bg: #202B40;
+  --text: #E6E9F0;
+  --text-muted: #AAB4C2;
+
+  --accent: #FFA52F;
+  --accent-light: #FFBD63;
+  --accent-dark: #D68A1F;
+
+  --green: #4CAF50;
+  --green-hover: #60D66B;
+  --red: #E06C75;
+  --red-hover: #FF7F88;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+h1, h2, h3, h4 {
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-light);
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
+/* ==============================================
+   NAVIGATION
+================================================= */
+.site-nav {
+  background: var(--nav-bg);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid var(--surface);
+}
+
+.site-nav .nav-links {
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  background: var(--surface);
+  padding: 10px 22px;
+  border-radius: 25px;
+  color: var(--text);
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  background: var(--accent);
+  color: #0D1B2A;
+}
+
+/* Hide accidental duplicate navs in some HTML files */
+body > ul.nav-links {
+  display: none;
+}
+
+/* ==============================================
+   HEADERS
+================================================= */
+header {
+  text-align: center;
+  margin-top: 32px;
+  margin-bottom: 20px;
+}
+
+.subtitle,
+.about {
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--text-muted);
+}
+
+/* ==============================================
+   SEARCH AREA
+================================================= */
+.search-area {
+  margin-top: 40px;
+  text-align: center;
+}
+
+#query {
+  width: 60%;
+  padding: 14px 22px;
+  font-size: 18px;
+  border-radius: 40px;
+  background: var(--input-bg);
+  outline: none;
+  border: none;
+  color: var(--text);
+}
+
+#query::placeholder {
+  color: var(--text-muted);
+}
+
+/* ==============================================
+   CONTROLS
+================================================= */
+.controls {
+  margin-top: 20px;
+}
+
+.model-toggle,
+.filter-toggle {
+  margin-bottom: 12px;
+}
+
+label {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+#recommended {
+  text-align: left;
+  margin-top: 40px;
+}
+
+
+/* ==============================================
+   BUTTONS
+================================================= */
+button {
+  border: none;
+  padding: 12px 22px;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin: 8px;
+}
+
+/* Search */
+#searchBtn {
+  background: var(--green);
+  color: white;
+}
+#searchBtn:hover {
+  background: var(--green-hover);
+}
+
+/* Reset */
+#resetBtn {
+  background: var(--red);
+  color: white;
+}
+#resetBtn:hover {
+  background: var(--red-hover);
+}
+
+/* ==============================================
+   CARDS (RESULTS / ARTICLE VIEW / ALL ARTICLES)
+================================================= */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--surface);
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+}
+
+.card .badge {
+  display: inline-block;
+  background: var(--surface);
+  padding: 4px 10px;
+  border-radius: 12px;
+  margin-right: 6px;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+/* ==============================================
+   ARTICLE PAGE
+================================================= */
+.article-view h2.title {
+  margin-top: 0;
+}
+
+.article-container {
+  max-width: 800px;
+  margin: auto;
+}
+
+/* ==============================================
+   ALL ARTICLES PAGE
+================================================= */
+#all-articles {
+  max-width: 900px;
+  margin: 32px auto;
+}
+
+/* ==============================================
+   ABOUT PAGE
+================================================= */
+main {
+  max-width: 900px;
+}
+
+/* ==============================================
+   SECTIONS (recommended, examples, how-to)
+================================================= */
+
+.examples, .how {
+  max-width: 700px;
+  margin: 40px auto;
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--surface);
+}
+
+.examples ul {
+  color: var(--text-muted);
+}
+
+/* ==============================================
+   FOOTER
+================================================= */
+footer {
+  text-align: center;
+  padding: 30px;
+  color: var(--text-muted);
+}
