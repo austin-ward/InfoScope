@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About | InfoScope</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Global Navigation -->
+  <nav class="site-nav">
+    <div class="nav-left">
+      <a href="index.html" class="logo">InfoScope</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="all-articles.html">All Articles</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <main style="max-width: 800px; margin: auto; padding: 20px;">
+
+    <div style="text-align:center">
+      <h1><strong>InfoScope</strong></h1>
+      <h3><em>A Mini News Search Engine built on classic IR principles</em></h3>
+      <p><small>(HTML • CSS • JavaScript • TF-IDF • BM25)</small></p>
+      <p><em>This website uses fictional, AI-generated news articles. Do not use them for real-world research.</em></p>
+    </div>
+
+    <hr />
+
+    <h2>Overview</h2>
+    <p>
+      <strong>InfoScope</strong> is a lightweight search engine built for my 
+      <strong>CIST433: Information Storage & Retrieval</strong> final project.
+      It demonstrates how search engines actually <em>think</em> — using techniques like
+      tokenization, stopword removal, and term weighting — all applied to a curated 
+      dataset of 400 fictional news article summaries.
+    </p>
+
+    <blockquote>
+      The goal isn’t to compete with Google — it’s to show that I understand how Google works.
+    </blockquote>
+
+    <h2>Information Retrieval Features</h2>
+
+    <ul>
+      <li><strong>Tokenization:</strong> Splits text into searchable words</li>
+      <li><strong>Stopword Removal:</strong> Removes filler words like “the,” “is,” “of”</li>
+      <li><strong>Stemming:</strong> Normalizes word forms (running → run)</li>
+      <li><strong>TF-IDF Model:</strong> Classic keyword importance weighting</li>
+      <li><strong>BM25-lite:</strong> Modern ranking model balancing frequency & length</li>
+      <li><strong>Field Boosts:</strong> Prioritizes title/tag matches</li>
+      <li><strong>Boolean Logic:</strong> Supports <code>AND</code>, <code>OR</code>, and quoted phrases</li>
+      <li><strong>Snippets & Highlights:</strong> Shows keyword context in results</li>
+    </ul>
+
+    <h2>How the Ranking Models Work</h2>
+
+    <h3>TF-IDF</h3>
+    <p>
+      TF-IDF stands for <strong>Term Frequency–Inverse Document Frequency</strong>. It boosts articles that:
+    </p>
+    <ul>
+      <li>use your keyword more often (TF)</li>
+      <li>use keywords that are relatively rare across the dataset (IDF)</li>
+    </ul>
+    <p>
+      <strong>In plain English:</strong> TF-IDF ranks articles higher when they talk a lot about your query using meaningful, specific terms.
+    </p>
+
+    <h3>BM25-lite</h3>
+    <p>
+      BM25 is a more modern and realistic ranking formula. It improves TF-IDF by:
+    </p>
+    <ul>
+      <li>penalizing overly long articles</li>
+      <li>making sure repeating a word 20 times doesn’t artificially inflate relevance</li>
+      <li>ranking results in a way that tends to match human expectations</li>
+    </ul>
+    <p>
+      <strong>In plain English:</strong> BM25 feels more “Google-like” — it ranks based on keyword importance, balance, and context.
+    </p>
+
+    <h2>Design Choices</h2>
+    <ul>
+      <li>Clean, centered layout</li>
+      <li>Large search bar with hint text</li>
+      <li>Model toggle for TF-IDF and BM25-lite</li>
+      <li>Boolean and phrase matching support</li>
+      <li>Recommended Articles on the homepage</li>
+    </ul>
+
+    <h2>Tech Stack</h2>
+    <ul>
+      <li><strong>HTML5</strong> for structure</li>
+      <li><strong>CSS3</strong> for styling (theme coming soon)</li>
+      <li><strong>Vanilla JavaScript</strong> for indexing, ranking, and rendering</li>
+      <li><strong>JSON Dataset</strong> containing 400 fictional articles</li>
+    </ul>
+
+    <h2>Source</h2>
+    <pre>
+git clone https://github.com/yourusername/InfoScope.git
+cd InfoScope
+open index.html
+    </pre>
+
+  </main>
+</body>
+</html>
+

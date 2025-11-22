@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Articles | InfoScope</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+<!-- Global Navigation -->
+  <nav class="site-nav">
+    <div class="nav-left">
+      <a href="index.html" class="logo">InfoScope</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="all-articles.html">All Articles</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="all-articles.html">All Articles</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+</nav>
+
+  <header>
+    <h1>All Articles</h1>
+    <p class="subtitle">Browse the full dataset</p>
+  </header>
+
+  <main id="all-articles"></main>
+
+  <footer>
+    <p>InfoScope © 2025</p>
+  </footer>
+
+  <script>
+    async function loadAllArticles() {
+      const container = document.getElementById("all-articles");
+      const res = await fetch("data/news.sample.json");
+      const data = await res.json();
+
+      container.innerHTML = data
+        .map(article => `
+          <div class="card">
+            <h3><a href="article.html?id=${article.id}">${article.title}</a></h3>
+            <p><em>${article.date}</em> • ${article.source}</p>
+            <p>${article.abstract}</p>
+            <div class="tags">${article.tags.map(t => `<span class="badge">${t}</span>`).join("")}</div>
+          </div>
+        `)
+        .join("");
+    }
+
+    loadAllArticles();
+  </script>
+</body>
+</html>

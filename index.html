@@ -1,70 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>InfoScope | News Search Engine</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InfoScope | News Search Engine</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+<!-- Global Navigation -->
+  <nav class="site-nav">
+    <div class="nav-left">
+      <a href="index.html" class="logo">InfoScope</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="all-articles.html">All Articles</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
 
-  <!-- Header -->
-  <header>
-    <h1>InfoScope</h1>
-    <p class="subtitle">A Mini News Search Engine built on IR principles</p>
-  </header>
+    <!-- Header -->
+    <header>
+      <h1>InfoScope</h1>
+      <p class="about">
+        Search across a dataset of 400 sample articles in tech, policy, and
+        science using TF-IDF, BM25-lite, and advanced query parsing
+        techniques. Enter keywords or Boolean operators and explore how real
+        search engines rank and match results.
+      </p>
+    </header>
 
-  <!-- Main Search Section -->
-  <main>
-    <section class="search-area">
-      <input 
-        type="text" 
-        id="query" 
-        placeholder="e.g., climate policy 'supply chain' OR emissions" 
-      />
-      
-      <div class="controls">
-        <div class="model-toggle">
-          <label><input type="radio" name="model" value="tfidf" checked /> TF-IDF</label>
-          <label><input type="radio" name="model" value="bm25" /> BM25-lite</label>
+    <!-- Main Search Section -->
+    <main>
+      <section class="search-area">
+        <input
+          type="text"
+          id="query"
+          placeholder="e.g., climate policy 'supply chain' OR emissions"
+        />
+
+        <div class="controls">
+          <div class="model-toggle">
+            <label><input type="radio" name="model" value="tfidf" checked /> TF-IDF</label>
+            <label><input type="radio" name="model" value="bm25" /> BM25-lite</label>
+          </div>
+
+          <div class="filter-toggle">
+            <label><input type="checkbox" id="fieldBoosts" checked /> Field Boosts</label>
+            <label><input type="checkbox" id="phrase" checked /> Phrases + AND/OR</label>
+          </div>
+
+          <div class="buttons">
+            <button id="searchBtn">Search</button>
+            <button id="resetBtn" class="ghost">Reset</button>
+          </div>
         </div>
+      </section>
 
-        <div class="filter-toggle">
-          <label><input type="checkbox" id="fieldBoosts" checked /> Field Boosts</label>
-          <label><input type="checkbox" id="phrase" checked /> Phrases + AND/OR</label>
-        </div>
+      <section class="all-articles">
+        <p><a href="all-articles.html">View all articles →</a></p>
+      </section>
 
-        <div class="buttons">
-          <button id="searchBtn">Search</button>
-          <button id="resetBtn" class="ghost">Reset</button>
-        </div>
+      <div class="examples">
+        <p><strong>Try searches like:</strong></p>
+        <ul>
+          <li>climate emissions</li>
+          <li>AI regulation</li>
+          <li>urban transit reliability</li>
+          <li>"supply chain" AND semiconductor</li>
+        </ul>
       </div>
+
+      <!-- Recommended Articles Section -->
+      <section id="recommended">
+        <h2>Recommended Articles</h2>
+        <ul>
+          <li><a href="article.html?id=1" target="_blank">New Federal Climate Policy Targets Industrial Emissions</a></li>
+          <li><a href="article.html?id=2" target="_blank">Semiconductor Supply Chains Diversify Beyond East Asia</a></li>
+          <li><a href="article.html?id=3" target="_blank">City Pilots Open Data Dashboard for Transit Reliability</a></li>
+        </ul>
+      </section>
+
+      <!-- Search Results Section -->
+      <section class="stats">
+        <div id="stats"></div>
+      </section>
+
+      <section id="results"></section>
+    </main>
+
+    <section class="how">
+      <h2>How to Use InfoScope</h2>
+      <ol>
+        <li>Enter your search query in the input box. You can use phrases (enclosed in quotes) and logical operators (AND, OR).</li>
+        <li>Select your preferred ranking model: TF-IDF or BM25-lite.</li>
+        <li>Toggle field boosts to prioritize certain fields like title or tags in the ranking.</li>
+        <li>Click the "Search" button to retrieve relevant articles from the dataset.</li>
+        <li>Review the search results displayed, which include article titles, dates, sources, abstracts, and tags.</li>
+        <li>Click on any article title to view its detailed page.</li>
+        <li>Use the "Reset" button to clear your search and start over.</li>
+      </ol>
     </section>
 
-    <!-- Recommended Articles Section -->
-    <section id="recommended">
-      <h2>Recommended Articles</h2>
-      <ul>
-        <li><a href="article.html?id=1" target="_blank">New Federal Climate Policy Targets Industrial Emissions</a></li>
-        <li><a href="article.html?id=2" target="_blank">Semiconductor Supply Chains Diversify Beyond East Asia</a></li>
-        <li><a href="article.html?id=3" target="_blank">City Pilots Open Data Dashboard for Transit Reliability</a></li>
-      </ul>
-    </section>
+    <!-- Footer -->
+    <footer>
+      <p>InfoScope © 2025 | SUNY at Albany Fall 2025 | CIST433 - Information Storage & Retrieval</p>
+      <p><small>Disclaimer: Sample Articles Created by AI - Do Not Use for Research</small></p>
+    </footer>
 
-    <!-- Search Results Section -->
-    <section class="stats">
-      <div id="stats"></div>
-    </section>
-
-    <section id="results"></section>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <p>InfoScope © 2025 | Built for CIST433 - Information Storage & Retrieval</p>
-    <p><small>Powered by TF-IDF • BM25-lite • JavaScript • JSON Dataset</small></p>
-  </footer>
-
-  <script src="js/search.js"></script>
-</body>
+    <script src="js/search.js"></script>
+  </body>
 </html>
