@@ -99,6 +99,16 @@ def main():
         if set(all_tags) != set(existing_tags):
             updated_count += 1
 
+        # --- If the article still has 3 or fewer tags, add extra fallback tags ---
+        if len(all_tags) <= 3:
+            fallback_tags = ["general", "news", "current-events", "world", "analysis"]
+
+            # Add missing fallback tags until we reach ~5 total
+            for tag in fallback_tags:
+                if len(all_tags) >= 5:
+                    break
+                all_tags.append(tag)
+
         article["tags"] = all_tags
 
     # Write out to a new file so we don't destroy the original
