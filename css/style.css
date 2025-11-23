@@ -233,12 +233,12 @@ main {
 /* ==============================================
    SECTIONS (recommended, examples, how-to)
 ================================================= */
-
-.examples, .how {
+.how {
   max-width: 700px;
-  margin: 40px auto;
-  background: var(--card-bg);
+  margin: 0 auto 40px auto;
   padding: 20px;
+  max-height: fit-content;
+  background: var(--card-bg);
   border-radius: 12px;
   border: 1px solid var(--surface);
 }
