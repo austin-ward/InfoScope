@@ -1,36 +1,36 @@
-// ---------------------------------------------------
-// Search Engine w/ Boolean Logic + Synonyms + TF-IDF/BM25
-// Field Boost Version (Title/Tags/Abstract Multipliers)
-// ---------------------------------------------------
-
 const searchBtn = document.getElementById("searchBtn");
 const resetBtn  = document.getElementById("resetBtn");
 const queryInput = document.getElementById("query");
 const resultsDiv = document.getElementById("results");
 const statsDiv   = document.getElementById("stats");
 
-let dataset = [];
+let dataset = []; // all the articles
 let DF = {};   // document frequencies
-let N = 0;
+let N = 0; // the number of articles
 
-
-// ---------------------------------------------------
-// Load Dataset + Prepare DF
-// ---------------------------------------------------
+// This Fetches the JSON file containing all articles, stores them in a dataset, and counts how many times each word appears across the full dataset (that’s what computeDF() does)
 async function loadDataset() {
   const res = await fetch("data/news.sample.json");
   dataset = await res.json();
   N = dataset.length;
   computeDF();
 }
-
+// This makes everything lowercase, chops text into pieces, and removes tiny words like “a”, “is”, “to”
 function tokenize(text) {
   return text
     .toLowerCase()
     .split(/[^a-z0-9]+/)
     .filter(t => t && t.length > 2);
 }
-
+// this scans every article once and creates a dictionary like 
+// word    |    # of articles containing it
+// ---------------------------------------
+// climate |   43
+// ai      |   28
+// chip    |   12
+// this is how the engine decides what's rare and what's common 
+// rare = more important
+// common = less important
 function computeDF() {
   const df = {};
   dataset.forEach(article => {
@@ -46,9 +46,7 @@ function computeDF() {
 }
 
 
-// ---------------------------------------------------
-// Synonym Expansion
-// ---------------------------------------------------
+// This is a small built-in thesaurus, basically to make the search have a larger reach
 const SYNONYMS = {
   tech: ["tech", "technology", "ai", "semiconductor", "digital", "innovation"],
   semiconductor: ["semiconductor", "chip", "supply chain"],
@@ -62,9 +60,9 @@ function expand(term) {
 }
 
 
-// ---------------------------------------------------
 // Parse Query (Phrases, Tokens, AND/OR)
-// ---------------------------------------------------
+// This detects quoted phrases, removes AND / OR words if typed, and expands synonyms
+// and returns all phrases, search terms, and which mode the user is using
 function parseQuery(query) {
   let raw = query.trim();
 
@@ -85,9 +83,9 @@ function parseQuery(query) {
 }
 
 
-// ---------------------------------------------------
 // TF-IDF Scoring
-// ---------------------------------------------------
+// Checks how many times a search term appears in an article and then gives more points if the word is rare
+// it then adds up all the points
 function tfidfScore(article, terms) {
   const words = tokenize(
     article.title + " " +
@@ -111,9 +109,7 @@ function tfidfScore(article, terms) {
 }
 
 
-// ---------------------------------------------------
 // BM25-lite Scoring
-// ---------------------------------------------------
 function bm25Score(article, terms) {
   const words = tokenize(
     article.title + " " +
@@ -138,10 +134,7 @@ function bm25Score(article, terms) {
   return score;
 }
 
-
-// ---------------------------------------------------
 // FIELD BOOSTS (Multiplicative)
-// ---------------------------------------------------
 function applyFieldBoosts(article, term, baseScore) {
   let boost = 1;
 
@@ -157,9 +150,7 @@ function applyFieldBoosts(article, term, baseScore) {
 }
 
 
-// ---------------------------------------------------
 // Main Search Logic
-// ---------------------------------------------------
 function searchArticles(query) {
   const t0 = performance.now();
 
@@ -191,17 +182,13 @@ function searchArticles(query) {
 
     if (!phrasePass || !termPass) return;
 
-    // -----------------------------
     // BASE SCORE (TF-IDF or BM25)
-    // -----------------------------
     let score =
       model === "tfidf"
         ? tfidfScore(article, expanded)
         : bm25Score(article, expanded);
 
-    // -----------------------------
     // APPLY FIELD BOOSTS
-    // -----------------------------
     if (useBoosts) {
       expanded.forEach(term => {
         score = applyFieldBoosts(article, term, score);
@@ -220,9 +207,7 @@ function searchArticles(query) {
 }
 
 
-// ---------------------------------------------------
 // Rendering
-// ---------------------------------------------------
 function renderResults(list, query, time) {
   resultsDiv.innerHTML = "";
   statsDiv.innerHTML = `<p>${list.length} results in ${time} ms for "<strong>${query}</strong>"</p>`;
@@ -250,9 +235,7 @@ function renderResults(list, query, time) {
 }
 
 
-// ---------------------------------------------------
 // Button Listeners
-// ---------------------------------------------------
 searchBtn.addEventListener("click", () => {
   const query = queryInput.value.trim();
   if (!query) return;
