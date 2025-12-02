@@ -30,7 +30,7 @@ def safe_expand_article(prompt):
                     {"role": "system", "content": "You write concise factual news summaries."},
                     {"role": "user", "content": prompt}
                 ],
-                max_tokens=180,     # MUCH smaller
+                max_tokens=180,     
                 temperature=0.4,
             )
             return response.choices[0].message.content.strip()
@@ -38,10 +38,10 @@ def safe_expand_article(prompt):
         except Exception as e:
             if "429" in str(e):
                 wait = 2 + i * 2
-                print(f"⚠️ Rate limit hit. Waiting {wait}s...")
+                print(f" Rate limit hit. Waiting {wait}s...")
                 time.sleep(wait)
             else:
-                print(f"⚠️ Error: {e}")
+                print(f" Error: {e}")
                 time.sleep(2)
     return None
 
@@ -74,8 +74,7 @@ def main():
             article["full_text"] = "Expansion failed."
 
         expanded_articles.append(article)
-
-        # smaller delay because shorter prompts
+        
         time.sleep(0.7)
 
     print("\nSaving...")
