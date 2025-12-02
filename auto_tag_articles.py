@@ -1,11 +1,11 @@
 import json
 from pathlib import Path
 
-# --- Paths (run this from your project root) ---
+
 INPUT_PATH = Path("data/news.sample.json")
 OUTPUT_PATH = Path("data/news.sample.tagged.json")
 
-# --- Tag categories + trigger keywords ---
+# Tag categories + trigger keywords 
 TAG_RULES = {
     "tech": [
         "tech", "technology", "ai", "artificial intelligence",
@@ -63,7 +63,7 @@ def infer_tags_from_text(text: str) -> set[str]:
         for keyword in triggers:
             if keyword in text_lower:
                 matched_tags.add(tag_name)
-                break  # no need to check more triggers for this tag
+                break  
 
     return matched_tags
 
@@ -93,17 +93,15 @@ def main():
 
         auto_tags = infer_tags_from_text(combined_text)
 
-        # Merge existing tags + new auto tags, keep unique
+       
         all_tags = list(dict.fromkeys(list(existing_tags) + sorted(auto_tags)))
 
         if set(all_tags) != set(existing_tags):
             updated_count += 1
 
-        # --- If the article still has 3 or fewer tags, add extra fallback tags ---
         if len(all_tags) <= 3:
             fallback_tags = ["general", "news", "current-events", "world", "analysis"]
 
-            # Add missing fallback tags until we reach ~5 total
             for tag in fallback_tags:
                 if len(all_tags) >= 5:
                     break
@@ -111,7 +109,6 @@ def main():
 
         article["tags"] = all_tags
 
-    # Write out to a new file so we don't destroy the original
     with OUTPUT_PATH.open("w", encoding="utf-8") as f:
         json.dump(articles, f, indent=2, ensure_ascii=False)
 
